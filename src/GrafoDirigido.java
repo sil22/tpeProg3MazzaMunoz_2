@@ -19,6 +19,8 @@ public class GrafoDirigido implements Grafo {
 	}
 
 	@Override
+	/* agregar arista, si no tiene arista la agrego, y si tiene, agrego +1 A SU PESO 
+	 * */
 	public void agregarArista(Vertice a, Vertice b) {
 		// TODO Auto-generated method stub
 		if(vertices.contains(a)){
@@ -97,11 +99,11 @@ public class GrafoDirigido implements Grafo {
 	public static void main(String[] args) {
 		GrafoDirigido gd = new GrafoDirigido(5);
 		ArrayList<Vertice> vertices = new ArrayList<Vertice>();
-		Vertice v0 = new Vertice(0, Estado.unvisited);
-		Vertice v1 = new Vertice(1, Estado.unvisited);
-		Vertice v2 = new Vertice(2, Estado.unvisited);
-		Vertice v3 = new Vertice(3, Estado.unvisited);
-		Vertice v4 = new Vertice(4, Estado.unvisited);
+		Vertice v0 = new Vertice(0, Vertice.Estado.unvisited);
+		Vertice v1 = new Vertice(1, Vertice.Estado.unvisited);
+		Vertice v2 = new Vertice(2, Vertice.Estado.unvisited);
+		Vertice v3 = new Vertice(3, Vertice.Estado.unvisited);
+		Vertice v4 = new Vertice(4, Vertice.Estado.unvisited);
 		vertices.add(v0);
 		vertices.add(v1);
 		vertices.add(v2);

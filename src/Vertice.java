@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Vertice {
 	int value;
+	int peso;
 	int cant;
 	Estado estado;
 	ArrayList<Vertice> adyacentes;
@@ -13,6 +14,18 @@ public class Vertice {
 		this.estado = e;
 	}
 	
+	public int getPeso() {
+		return peso;
+	}
+
+	public void setPeso(int peso) {
+		this.peso = peso;
+	}
+
+	public void setAdyacentes(ArrayList<Vertice> adyacentes) {
+		this.adyacentes = adyacentes;
+	}
+
 	public ArrayList<Vertice> getAdyacentes() {
 		return adyacentes;
 	}
@@ -48,5 +61,13 @@ public class Vertice {
 		// TODO Auto-generated method stub
 		return Integer.toString(value);
 	}
+	
+
+	public enum Estado {
+		unvisited,
+		visiting,
+		visited;
+	}
+
 
 }

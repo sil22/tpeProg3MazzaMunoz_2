@@ -18,7 +18,9 @@ public class DFS {
 		}
 		return resultado;
 	}
-		
+	
+	//falta chequear los ciclos
+	
 	private static void dfs_visitar(Vertice v, ArrayList<Vertice> resultado2) {
 		v.setEstado(Estado.visiting);
 		if(v.getAdyacentes().size() != 0){
