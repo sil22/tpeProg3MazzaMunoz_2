@@ -1,7 +1,10 @@
-
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-public class GrafoDirigido implements Grafo {
+public class GrafoDirigido {
 	ArrayList<Vertice> vertices;
 	int numVertices;
 	int numAristas;
@@ -12,19 +15,17 @@ public class GrafoDirigido implements Grafo {
 		numAristas = 0;
 	}
 
-	@Override
 	public void agregarVertice(Vertice v) {
 		// TODO Auto-generated method stub
 			vertices.add(v);
 	}
 
-	@Override
 	/* agregar arista, si no tiene arista la agrego, y si tiene, agrego +1 A SU PESO 
 	 * */
 	public void agregarArista(Vertice a, Vertice b) {
 		// TODO Auto-generated method stub
 		if(vertices.contains(a)){
-			vertices.get(a.getValue()).setAdyacentes(b);
+			a.setAdyacentes(b);
 			numAristas++;
 		}
 	}
@@ -37,7 +38,6 @@ public class GrafoDirigido implements Grafo {
 		this.vertices = vertices;
 	}
 
-	@Override
 	public Integer obtenerVertice(Integer claveVert) {
 		// TODO Auto-generated method stub		
 		for (int i = 0; i < vertices.size(); i++) {
@@ -48,50 +48,45 @@ public class GrafoDirigido implements Grafo {
 		return null;
 	}
 
-	@Override
 	public int numVertices() {
 		// TODO Auto-generated method stub
 		return numVertices;
 	}
 
-	@Override
 	public int numAristas() {
 		// TODO Auto-generated method stub
 		return numAristas;
 	}
 
-	@Override
 	public boolean existeArista(Vertice a, Vertice b) {
 		// TODO Auto-generated method stub
 		if(vertices.contains(a)){
-			ArrayList<Vertice> adyacentes = new ArrayList<Vertice>();
+			Map<Vertice, Integer> adyacentes = new HashMap<Vertice, Integer>();
 			adyacentes = vertices.get(a.getValue()).getAdyacentes();
-			if(adyacentes.contains(b)){
+			if(adyacentes.containsKey(b)){
 				return true;
 			}
 		}
 		return false;
 	}
 
-	@Override
-	public ArrayList<Vertice> obtenerAdyacentes(Integer vertice) {
+	public Set<Vertice> obtenerAdyacentes(Vertice vertice) {
 		// TODO Auto-generated method stub
-		ArrayList<Vertice> result = new ArrayList<Vertice>();
+		Set<Vertice> result = new HashSet<Vertice>();
 		for (int i = 0; i < vertices.size(); i++) {
-			if(vertices.get(i).getValue() == vertice){
-				result = vertices.get(i).getAdyacentes();
+			if(vertices.get(i).getValue() == vertice.getValue()){
+				result = vertices.get(i).getAdyacentes().keySet();
 				return result;
 			}
 		}
 		return null;
 	}
 	
-	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		String grafo = "";
 		for (int i = 0; i < vertices.size(); i++) {
-			grafo += vertices.get(i).getValue() + " ";
+			grafo += vertices.get(i).getValue() + " Values"+ vertices.get(i).getAdyacentes().values();
 		}
 		return grafo;
 	}
@@ -113,27 +108,11 @@ public class GrafoDirigido implements Grafo {
 		for (int i = 0; i < gd.numVertices(); i++) {
 			gd.agregarVertice(vertices.get(i));
 		}
+		gd.agregarArista(v0, v1);
+		gd.agregarArista(v0, v1);
+	
 		
 		System.out.println(gd.toString());
-		
-		gd.agregarArista(v0, v1);
-		gd.agregarArista(v0, v2);
-		gd.agregarArista(v1, v2);
-		gd.agregarArista(v1, v3);
-		gd.agregarArista(v2, v4);
-		gd.agregarArista(v3, v4);
-		gd.agregarArista(v4, v2);
-		gd.agregarArista(v4, v0);
-
-		System.out.println(v0.getAdyacentes());
-		System.out.println(v1.getAdyacentes());
-		System.out.println(v2.getAdyacentes());
-		System.out.println(v3.getAdyacentes());
-		System.out.println(v4.getAdyacentes());
-		
-		System.out.println(gd.obtenerVertice(2));
-		System.out.println(gd.existeArista(v3, v4));
-		System.out.println(gd.obtenerAdyacentes(4));
 		
 	}
 

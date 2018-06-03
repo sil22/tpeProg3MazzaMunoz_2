@@ -1,37 +1,29 @@
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Vertice {
 	int value;
-	int peso;
 	int cant;
 	Estado estado;
-	ArrayList<Vertice> adyacentes;
+	Map<Vertice, Integer> adyacentes;
 	
 	public Vertice(int value, Estado e) {
-		adyacentes = new ArrayList<Vertice>();
+		adyacentes = new HashMap<Vertice, Integer>();
 		this.value = value;
 		estado = e;
 	}
-	
-	public int getPeso() {
-		return peso;
-	}
 
-	public void setPeso(int peso) {
-		this.peso = peso;
-	}
-
-	public void setAdyacentes(ArrayList<Vertice> adyacentes) {
-		this.adyacentes = adyacentes;
-	}
-
-	public ArrayList<Vertice> getAdyacentes() {
+	public Map<Vertice, Integer> getAdyacentes() {
 		return adyacentes;
 	}
-	public void setAdyacentes(Vertice b) {
-		if(!adyacentes.contains(b)){
-		this.adyacentes.add(b);
+
+	public void setAdyacentes(Vertice v) {
+		if(adyacentes.containsKey(v)){
+			adyacentes.put(v, adyacentes.get(v) + 1);	
+		}
+		else{
+			adyacentes.put(v,1);
 		}
 	}
 	
