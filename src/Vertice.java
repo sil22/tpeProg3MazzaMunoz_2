@@ -11,7 +11,7 @@ public class Vertice {
 	public Vertice(int value, Estado e) {
 		adyacentes = new ArrayList<Vertice>();
 		this.value = value;
-		this.estado = e;
+		estado = e;
 	}
 	
 	public int getPeso() {
@@ -61,13 +61,5 @@ public class Vertice {
 		// TODO Auto-generated method stub
 		return Integer.toString(value);
 	}
-	
-
-	public enum Estado {
-		unvisited,
-		visiting,
-		visited;
-	}
-
 
 }
