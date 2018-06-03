@@ -1,3 +1,4 @@
+package searchStats;
 
 public enum Estado {
 	unvisited,
