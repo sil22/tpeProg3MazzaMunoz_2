@@ -4,6 +4,9 @@ import java.util.*;
 
 import com.sun.corba.se.impl.orbutil.graph.Graph;
 
+import searchStats.Estado;
+import searchStats.GrafoDirigido;
+import searchStats.Vertice;
 import util.*;
 
 
@@ -11,10 +14,13 @@ public class Library {
 	
 	BookList books;
 	GenderTree genderIndex;
+	GrafoDirigido gendersGraph;
+	
 
 	public Library(){
 		books = new BookList();
 		genderIndex = new GenderTree();
+		gendersGraph = new GrafoDirigido(100);
 	}
 		
 	public BookList getBooks() {
@@ -49,12 +55,26 @@ public class Library {
 		}
 	}
 	
-	public LinkedList<Book> searchBooks(String gender){
+	public LinkedList<Book> searchBooks(String gender) {
 		return genderIndex.getBookList(gender);
 	}
-
-	// sevicio 0
+	
+	public void addGender(String []genders) {
+		for (int i = 0; i < genders.length; i++) {
+			Vertice genderSearch = new Vertice(new Gender(genders[i]), Estado.unvisited);
+			if(!gendersGraph.getVertices().contains(genderSearch)){
+				gendersGraph.agregarVertice(genderSearch);
+			}
+		}
+		
+	}
+	
+	public void addArista(Vertice a) {
+		
+	}
+	// sevicio 0 retornar todos los libros que cumplan con todos los generos
 	public LinkedList<Book> searchBooks(LinkedList gender){
+		
 		return null;
 		
 	}

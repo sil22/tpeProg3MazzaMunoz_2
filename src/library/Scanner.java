@@ -9,10 +9,12 @@ import java.util.*;
 
 public class Scanner {
 	
-	String path;
+	String pathBooks;
+	String pathGenders;
 
-	public Scanner(String path) {
-		this.path = path;
+	public Scanner(String pathBooks, String pathGenders) {
+		this.pathBooks = pathBooks;
+		this.pathGenders= pathGenders;
 	}
 
 	public void importBooks(Library l) {
@@ -21,7 +23,7 @@ public class Scanner {
 		String cvsSplitBy = ",";
 		long inicio, fin, tiempoTotal;
 
-		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(pathBooks))) {
 
 			inicio = System.nanoTime();
 			br.readLine();
@@ -77,6 +79,34 @@ public class Scanner {
 				System.out.println("Error cerrando el BufferedWriter" + ex);
 			}
 
+		}
+	}
+	
+	public void importGenders(Library l) {
+
+		String line = "";
+		String cvsSplitBy = ",";
+		long inicio, fin, tiempoTotal;
+
+		try (BufferedReader br = new BufferedReader(new FileReader(pathGenders))) {
+
+			inicio = System.nanoTime();
+			br.readLine();
+			while ((line = br.readLine()) != null) {
+
+				String[] items = line.split(cvsSplitBy);
+				l.addGender(items);
+				
+			}
+			fin = System.nanoTime();
+			tiempoTotal = fin - inicio;
+
+			System.out.println(Long.toString(tiempoTotal));// Imprimo tiempo que
+															// tarda en leer el
+															// archivo
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

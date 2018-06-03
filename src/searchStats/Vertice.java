@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Vertice {
-	int value;
-	int cant;
+	Object value;
 	Estado estado;
 	Map<Vertice, Integer> adyacentes;
 	
-	public Vertice(int value, Estado e) {
+	public Vertice(Object value, Estado e) {
 		adyacentes = new HashMap<Vertice, Integer>();
 		this.value = value;
 		estado = e;
@@ -28,15 +27,7 @@ public class Vertice {
 		}
 	}
 	
-	public int getCant() {
-		return cant;
-	}
-
-	public void setCant(int cant) {
-		this.cant = cant;
-	}
-
-	public int getValue() {
+	public Object getValue() {
 		return value;
 	}
 	public void setValue(int value) {
@@ -49,10 +40,10 @@ public class Vertice {
 		this.estado = estado;
 	}
 	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return Integer.toString(value);
-	}
+//	@Override
+//	public String toString() {
+//		// TODO Auto-generated method stub
+//		return value;
+//	}
 
 }

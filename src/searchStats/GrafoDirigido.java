@@ -39,7 +39,7 @@ public class GrafoDirigido {
 		this.vertices = vertices;
 	}
 
-	public Integer obtenerVertice(Integer claveVert) {
+	public Object obtenerVertice(Integer claveVert) {
 		// TODO Auto-generated method stub		
 		for (int i = 0; i < vertices.size(); i++) {
 			if(vertices.get(i).getValue() == claveVert){
@@ -63,7 +63,7 @@ public class GrafoDirigido {
 		// TODO Auto-generated method stub
 		if(vertices.contains(a)){
 			Map<Vertice, Integer> adyacentes = new HashMap<Vertice, Integer>();
-			adyacentes = vertices.get(a.getValue()).getAdyacentes();
+			adyacentes = vertices.get((int) a.getValue()).getAdyacentes();
 			if(adyacentes.containsKey(b)){
 				return true;
 			}

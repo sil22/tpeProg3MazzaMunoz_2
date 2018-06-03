@@ -5,10 +5,11 @@ public class LibrarySystem {
 	Library library;
 	Scanner scanner;
 	
-	public LibrarySystem(String path){
+	public LibrarySystem(String pathBooks, String pathGenders){
 		library = new Library();
-		scanner = new Scanner(path);
+		scanner = new Scanner(pathBooks, pathGenders);
 		scanner.importBooks(library);
+		scanner.importGenders(library);
 	}
 	
 	public LibrarySystem(){
@@ -34,9 +35,10 @@ public class LibrarySystem {
 	
 	public static void main(String[] args) {
 		
-		LibrarySystem ls = new LibrarySystem("C:/Users/Eloy/Desktop/temporalWSPC/datasets/primerEtapa/dataset1.csv");
+		LibrarySystem ls = new LibrarySystem("/Users/munoz/Documents/TUDAI/Programacion 3 CLASES - 2018/Practicos/datasets-1ra etapa/dataset1.csv", "/Users/munoz/Documents/TUDAI/Programacion 3 CLASES - 2018/Practicos/datasets-2da etapa/dataset1.csv");
 		System.out.println(ls.getBooks().toString());
-		ls.printBooksByGender("drama", "C:/Users/Eloy/Desktop/temporalWSPC/datasets/primerEtapa/salidaDataset1.csv");
+		ls.printBooksByGender("drama", "/Users/munoz/Documents/TUDAI/Programacion 3 CLASES - 2018/Practicos/datasets-1ra etapa/salidaDataset1.csv");
+	
 	}
 	
 }
