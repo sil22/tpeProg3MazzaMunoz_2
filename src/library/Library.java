@@ -2,11 +2,9 @@ package library;
 
 import java.util.*;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
+//import com.sun.corba.se.impl.orbutil.graph.Graph;
 
-import searchStats.Estado;
-import searchStats.GrafoDirigido;
-import searchStats.Vertice;
+import searchStats.Vertex;
 import util.*;
 
 
@@ -14,13 +12,10 @@ public class Library {
 	
 	BookList books;
 	GenderTree genderIndex;
-	GrafoDirigido gendersGraph;
 	
-
 	public Library(){
 		books = new BookList();
 		genderIndex = new GenderTree();
-		gendersGraph = new GrafoDirigido(100);
 	}
 		
 	public BookList getBooks() {
@@ -42,14 +37,14 @@ public class Library {
 
 	public void addBook(String [] items){
 		
-		Book book = new Book(items[0], items[1], items[2], items[3]);
-		addLinkToBook(items[3],book);
+		String[] genders = items[3].split(" ");
+		Book book = new Book(items[0], items[1], items[2], genders);
+		addLinkToBook(genders,book);
 		books.insert(book);
 	}
 
-	private void addLinkToBook(String gendersStr, Book book) {
+	private void addLinkToBook(String[] genders, Book book) {
 		
-		String[] genders = gendersStr.split(" ");
 		for (String gender : genders) {
 			genderIndex.addLinkToBook(gender, book);
 		}
@@ -59,6 +54,22 @@ public class Library {
 		return genderIndex.getBookList(gender);
 	}
 	
+	// sevicio 0 retornar los libros que cumplan con todos los generos
+	public LinkedList<Book> searchBooks(LinkedList<String> genderList){
+
+		LinkedList<Book> searchResult = new LinkedList<Book>();
+		Book currentBook; 
+
+		for (int i = 0; i < books.size; i++) {
+			currentBook = books.getElement(i);
+			if(currentBook.containsAllGenders(genderList)){
+				searchResult.add(currentBook);
+			}
+		}
+		return searchResult;
+	}
+	
+	/*
 	public void addGender(String []genders) {
 		for (int i = 0; i < genders.length; i++) {
 			Vertice genderSearch = new Vertice(new Gender(genders[i]), Estado.unvisited);
@@ -68,31 +79,5 @@ public class Library {
 		}
 		
 	}
-	
-	public void addArista(Vertice a) {
-		
-	}
-	// sevicio 0 retornar todos los libros que cumplan con todos los generos
-	public LinkedList<Book> searchBooks(LinkedList gender){
-		
-		return null;
-		
-	}
-	
-	// Generos mas frecuentes  servicio 1
-	public ArrayList<Gender> getFrequentlyGenderAfter(Gender gender){
-		return null;
-		
-	}
-	
-	// Servicio 2
-	public ArrayList<Gender> getAllGenderAfterSearching(Gender gender){
-		return null;
-	}
-	
-	
-	public Graph getRelatedGenders( ){
-		return null;
-	}
-
+	*/
 }

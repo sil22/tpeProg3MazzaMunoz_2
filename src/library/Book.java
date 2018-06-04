@@ -1,13 +1,16 @@
 package library;
- public class Book {
+
+import java.util.LinkedList;
+
+public class Book {
 	int id;
 	static int count = -1;
 	String title = "";
 	String author = "";
 	String pages;
-	String genders;
+	String[] genders;
 
-	public Book( String t, String a, String cp, String g){
+	public Book( String t, String a, String cp, String[] g){
 		count++;
 		this.id = count;
 		title = t;
@@ -44,16 +47,36 @@ package library;
 		this.pages = pages;
 	}
 
-	public String getGenders() {
+	public String[] getGenders() {
 		return genders;
 	}
 
-	public void setGenders(String genders) {
+	public void setGenders(String[] genders) {
 		this.genders = genders;
 	}
 	
 	public String toString(){
 		return "Libro id:" + id + " title: " + title + " author: " + author +
-				" Pags: " + pages + " genders: " + genders; 
+				" Pags: " + pages + " genders: " + printGenders(); 
+	}
+
+	
+	
+	private String printGenders() {
+		String result = "";
+		for (String gender : genders) {
+			result+= gender + " ";
+		}
+		return result;
+	}
+
+	public boolean containsAllGenders(LinkedList<String> genderList) {
+		
+		for (String gender : this.genders) {
+			if(!genderList.contains(gender)){
+				return false;
+			}
+		}
+		return true;
 	}
 }

@@ -2,8 +2,8 @@ package library;
 
 public class BookList {
 
-	Book arr[];
-	int size = 0;
+	protected Book arr[];
+	protected int size = 0;
 
 	public BookList(){
 		arr = new Book[500];
@@ -13,12 +13,16 @@ public class BookList {
 		this.arr = arr;
 		size = arr.length;
 	}
+	
+	public int size(){
+		return this.size;
+	}
 
 	public boolean isEmpty(){
 		return size == 0;
 	}
 
-	public Object getElement(int pos){
+	public Book getElement(int pos){
 		if(pos < size){
 			return arr[pos];
 		}
@@ -118,6 +122,8 @@ public class BookList {
 		}
 		return copy;
 	}
+
+
 
 
 }
