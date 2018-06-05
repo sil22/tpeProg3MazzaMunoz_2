@@ -80,15 +80,15 @@ public class SearchStatsGraph {
 	}
 
 	
-	public void generateSearchStatGraph(LinkedList<String> genderList) {
+	public void generateSearchStatGraph(String[] genders) {
 		
-		for (int i = 0; i < genderList.size(); i++) {
-			Vertex currentV = new Vertex(genderList.get(i));
+		for (int i = 0; i < genders.length; i++) {
+			Vertex currentV = new Vertex(genders[i]);
 			if(!vertices.contains(currentV)){
 				vertices.add(currentV);
 			}
 			if(i != 0){
-				this.agregarArista(currentV, vertices.get(i-1));
+				this.agregarArista(vertices.get(i-1), currentV);
 			}
 		}
 		

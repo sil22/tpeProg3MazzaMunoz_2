@@ -27,40 +27,48 @@ public class LibrarySystem {
 		scanner.printBooksByGender(library.searchBooks(gender), path);
 	}
 	
-	// Servicio 0
-	public void searchByGenderList(String genderListImportPath, String searchOutputPath) {
-		
-		// Importa la lista de busquedas. siendo cada busqueda una lista de generos
-		LinkedList<LinkedList<String>> genderLists = scanner.importGenderLists(genderListImportPath);
-		//Realiza la busqueda y la imprime
-		scanner.printBooksByGenderList(multipleSearch(genderLists), searchOutputPath);
-		
+	public void generateStatsGraph(String genderListImportPath) {
+		scanner.importGenderLists(genderListImportPath, searchStats);
 	}
 	
-	// sevicio 0
-	private LinkedList<LinkedList<Book>> multipleSearch(List<LinkedList<String>> genderLists) {
-		
-		LinkedList<LinkedList<Book>> booksOutPut = new LinkedList<LinkedList<Book>>();
-		for (LinkedList<String> genderList : genderLists){ 
-			booksOutPut.add(library.searchBooks(genderList)); 
-			searchStats.generateSearchStatGraph(genderList);
-		}
-		return booksOutPut;
+	public String printStatsGraph(){
+		return searchStats.toString();
 	}
+	
+//	public void searchByGenderList(String genderListImportPath, String searchOutputPath) {
+//		
+//		// Importa la lista de busquedas. siendo cada busqueda una lista de generos
+//		LinkedList<LinkedList<String>> genderLists = scanner.importGenderLists(genderListImportPath);
+//		//Realiza la busqueda y la imprime
+//		scanner.printBooksByGenderList(multipleSearch(genderLists), searchOutputPath);
+//		
+//	}
+//	
+//	private LinkedList<LinkedList<Book>> multipleSearch(List<LinkedList<String>> genderLists) {
+//		
+//		LinkedList<LinkedList<Book>> booksOutPut = new LinkedList<LinkedList<Book>>();
+//		for (LinkedList<String> genderList : genderLists){ 
+//			booksOutPut.add(library.searchBooks(genderList)); 
+//			searchStats.generateSearchStatGraph(genderList);
+//		}
+//		return booksOutPut;
+//	}
 
 	public static void main(String[] args) {
 		
-		String importBooksPath = "C:/Users/Eloy/Desktop/datasets/primerEtapa/dataset2.csv";
-		String searchOutputPath = "C:/Users/Eloy/Desktop/datasets/segundaEtapa/salidaDataset1.csv";
-		String genderListImportPath = "C:/Users/Eloy/Desktop/datasets/segundaEtapa/dataset2.csv";
-		String multipleSearchOutputPath = "C:/Users/Eloy/Desktop/datasets/segundaEtapa/salidaDataset1.csv";
+		String importBooksPath = "/Users/munoz/Documents/TUDAI/Programacion 3 CLASES - 2018/Practicos/datasets-1ra etapa/dataset1.csv";
+		String searchOutputPath = "/Users/munoz/Documents/TUDAI/Programacion 3 CLASES - 2018/Practicos/datasets-1ra etapa/salidaDataset1.csv";
+		String genderListImportPath = "/Users/munoz/Documents/TUDAI/Programacion 3 CLASES - 2018/Practicos/datasets-2da etapa/dataset1b.csv";
+		String multipleSearchOutputPath = "/Users/munoz/Documents/TUDAI/Programacion 3 CLASES - 2018/Practicos/datasets-2da etapa/salidaDataset1.csv";
 		
 		
 		LibrarySystem ls = new LibrarySystem(importBooksPath); // Se cargan todos los libros
 		System.out.println(ls.getBooks().toString());
 		ls.printBooksByGender("drama", searchOutputPath);
 		//Servicio 0
-		ls.searchByGenderList(genderListImportPath, multipleSearchOutputPath);
+		//ls.searchByGenderList(genderListImportPath, multipleSearchOutputPath);
+		ls.generateStatsGraph(genderListImportPath);
+		System.out.println(ls.printStatsGraph());
 	}
 
 	

@@ -9,6 +9,7 @@ import java.util.*;
 
 import library.Book;
 import library.Library;
+import searchStats.SearchStatsGraph;
 
 public class Scanner {
 	
@@ -47,12 +48,11 @@ public class Scanner {
 		}
 	}
 	
-	public LinkedList<LinkedList<String>> importGenderLists(String genderListImportPath)  {
+	public void importGenderLists(String genderListImportPath, SearchStatsGraph searchStats)  {
 
 		String line = "";
 		String cvsSplitBy = ",";
 		long inicio, fin, tiempoTotal;
-		LinkedList<LinkedList<String>> genderLists = new LinkedList<LinkedList<String>>();
 
 		try (BufferedReader br = new BufferedReader(new FileReader(genderListImportPath))) {
 
@@ -60,13 +60,8 @@ public class Scanner {
 			br.readLine();
 			while ((line = br.readLine()) != null) {
 				
-				LinkedList<String> currentGenderList = new LinkedList<String>();
-				String[] generos = line.split(cvsSplitBy);
-				for (String genero : generos) {
-					currentGenderList.add(genero);
-				}
-				
-				genderLists.add(currentGenderList);
+				String[] genders = line.split(cvsSplitBy);
+				searchStats.generateSearchStatGraph(genders);
 				
 			}
 			fin = System.nanoTime();
@@ -76,13 +71,10 @@ public class Scanner {
 															// tarda en leer el
 															// archivo
 			
-			return genderLists; // Retorno la lista de listas de generos
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("No se encontro archivo");
-		return null;
+		
 	}
 
 

@@ -68,16 +68,4 @@ public class Library {
 		}
 		return searchResult;
 	}
-	
-	/*
-	public void addGender(String []genders) {
-		for (int i = 0; i < genders.length; i++) {
-			Vertice genderSearch = new Vertice(new Gender(genders[i]), Estado.unvisited);
-			if(!gendersGraph.getVertices().contains(genderSearch)){
-				gendersGraph.agregarVertice(genderSearch);
-			}
-		}
-		
-	}
-	*/
 }
