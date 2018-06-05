@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 import library.Book;
@@ -20,16 +21,15 @@ public class SearchStatsGraph {
 		numAristas = 0;
 	}
 
-	public void agregarVertice(Vertex v) {
+	public void addVertice(Vertex v) {
 		// TODO Auto-generated method stub
+		if(!vertices.contains(v)){
 			vertices.add(v);
 			numVertices++;
+		}
 	}
 
-	/* agregar arista, si no tiene arista la agrego, y si tiene, agrego +1 A SU PESO 
-	 * */
-	public void agregarArista(Vertex a, Vertex b) {
-		// TODO Auto-generated method stub
+	public void addArista(Vertex a, Vertex b) {
 		if(vertices.contains(a)){
 			a.setAdyacentes(b);
 			numAristas++;
@@ -44,7 +44,7 @@ public class SearchStatsGraph {
 		this.vertices = vertices;
 	}
 
-	public Vertex obtenerVertice(String claveVert) {	
+	public Vertex getVertice(String claveVert) {	
 		for (int i = 0; i < vertices.size(); i++) {
 			if(vertices.get(i).getValue().equals(claveVert)){
 				return vertices.get(i);
@@ -78,22 +78,6 @@ public class SearchStatsGraph {
 		return grafo;
 		
 	}
-
-	
-	public void generateSearchStatGraph(String[] genders) {
-		
-		for (int i = 0; i < genders.length; i++) {
-			Vertex currentV = new Vertex(genders[i]);
-			if(!vertices.contains(currentV)){
-				vertices.add(currentV);
-			}
-			if(i != 0){
-				this.agregarArista(vertices.get(i-1), currentV);
-			}
-		}
-		
-	}
-	
 	
 	// Generos mas frecuentes  servicio 1
 	public ArrayList<Gender> getFrequentlyGenderAfter(Gender gender){
@@ -126,15 +110,15 @@ public class SearchStatsGraph {
 		vertices.add(v4);
 
 		for (Vertex vertice : vertices) {
-			gd.agregarVertice(vertice);
+			gd.addVertice(vertice);
 		}
-		gd.agregarArista(v0, v1);
-		gd.agregarArista(v0, v1);
-		gd.agregarArista(v0, v2);
-		gd.agregarArista(v0, v3);
-		gd.agregarArista(v1, v2);
-		gd.agregarArista(v2, v3);
-		gd.agregarArista(v3, v1);
+		gd.addArista(v0, v1);
+		gd.addArista(v0, v1);
+		gd.addArista(v0, v2);
+		gd.addArista(v0, v3);
+		gd.addArista(v1, v2);
+		gd.addArista(v2, v3);
+		gd.addArista(v3, v1);
 	
 		
 		System.out.println(gd.toString());

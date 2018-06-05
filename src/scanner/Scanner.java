@@ -8,44 +8,15 @@ import java.io.IOException;
 import java.util.*;
 
 import library.Book;
-import library.Library;
 import searchStats.SearchStatsGraph;
+import searchStats.Vertex;
 
 public class Scanner {
 	
-	String pathBooks;
 	String pathGenders;
 
-	public Scanner(String pathBooks) {
-		this.pathBooks = pathBooks;
-	}
-
-	public void importBooks(Library l) {
-
-		String line = "";
-		String cvsSplitBy = ",";
-		long inicio, fin, tiempoTotal;
-
-		try (BufferedReader br = new BufferedReader(new FileReader(pathBooks))) {
-
-			inicio = System.nanoTime();
-			br.readLine();
-			while ((line = br.readLine()) != null) {
-
-				String[] items = line.split(cvsSplitBy);
-				l.addBook(items);
-
-			}
-			fin = System.nanoTime();
-			tiempoTotal = fin - inicio;
-
-			System.out.println(Long.toString(tiempoTotal));// Imprimo tiempo que
-															// tarda en leer el
-															// archivo
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public Scanner(String pathGenders) {
+		this.pathGenders = pathGenders;
 	}
 	
 	public void importGenderLists(String genderListImportPath, SearchStatsGraph searchStats)  {
@@ -61,7 +32,18 @@ public class Scanner {
 			while ((line = br.readLine()) != null) {
 				
 				String[] genders = line.split(cvsSplitBy);
-				searchStats.generateSearchStatGraph(genders);
+
+				searchStats.addVertice(new Vertex(genders[0]));
+				for (int i = 1; i < genders.length; i++) {
+					Vertex currentV = new Vertex(genders[i]);
+					if(!searchStats.getVertices().contains(currentV)){
+						searchStats.addVertice(currentV);
+						searchStats.addArista(searchStats.getVertice(genders[i-1]), currentV);						
+					}
+					else {
+						searchStats.addArista(searchStats.getVertice(genders[i-1]), currentV);						
+					}
+				}
 				
 			}
 			fin = System.nanoTime();
@@ -132,7 +114,7 @@ public class Scanner {
 				
 				int numSearch = 0;
 				for (LinkedList<Book> bookList : booksOutput) {
-					bw.write("Resultados busqueda n°" + numSearch);
+					bw.write("Resultados busqueda nï¿½" + numSearch);
 					bw.newLine();
 					for (Book book : bookList) {
 						bw.write(book.toString());
