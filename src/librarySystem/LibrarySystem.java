@@ -50,10 +50,10 @@ public class LibrarySystem {
 
 	public static void main(String[] args) {
 		
-		String importBooksPath = "C:/Users/Eloy/Desktop/temporalWSPC/datasets/primerEtapa/dataset1.csv";
-		String searchOutputPath = "C:/Users/Eloy/Desktop/temporalWSPC/datasets/segundaEtapa/salidaDataset1.csv";
-		String genderListImportPath = "C:/Users/Eloy/Desktop/temporalWSPC/datasets/segundaEtapa/dataset1.csv";
-		String multipleSearchOutputPath = "C:/Users/Eloy/Desktop/temporalWSPC/datasets/segundaEtapa/salidaDataset1.csv";
+		String importBooksPath = "C:/Users/Eloy/Desktop/datasets/primerEtapa/dataset2.csv";
+		String searchOutputPath = "C:/Users/Eloy/Desktop/datasets/segundaEtapa/salidaDataset1.csv";
+		String genderListImportPath = "C:/Users/Eloy/Desktop/datasets/segundaEtapa/dataset2.csv";
+		String multipleSearchOutputPath = "C:/Users/Eloy/Desktop/datasets/segundaEtapa/salidaDataset1.csv";
 		
 		
 		LibrarySystem ls = new LibrarySystem(importBooksPath); // Se cargan todos los libros

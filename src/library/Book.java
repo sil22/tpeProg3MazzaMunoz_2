@@ -72,11 +72,21 @@ public class Book {
 
 	public boolean containsAllGenders(LinkedList<String> genderList) {
 		
-		for (String gender : this.genders) {
-			if(!genderList.contains(gender)){
+		
+		boolean existe;
+		for (String searchGender : genderList) {
+			existe = false;
+			for (int i = 0; i < genders.length; i++) {
+				if(searchGender.equals(genders[i])){
+					existe = true;
+				}
+			}
+			if(!existe){
 				return false;
 			}
+			
 		}
 		return true;
+		
 	}
 }
